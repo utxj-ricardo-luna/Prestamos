@@ -1,0 +1,16 @@
+Tablas principales:
+
+Material:
+    ID_Material (Clave primaria)
+    Tipo_Material (por ejemplo, cañón, computadora, extensión)
+    Marca
+    Modelo
+    Estado (Disponible, Prestado, En Mantenimiento, etc.)
+
+Prestamos:
+    ID_Prestamo (Clave primaria)
+    ID_Usuario (Clave foránea)
+    ID_Material (Clave foránea)
+    Fecha_Prestamo
+    Fecha_Devolucion
+    Estado_Prestamo (Activo, Devuelto, Vencido)
