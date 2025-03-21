@@ -8,7 +8,6 @@ def get_prestamos(db: Session, skip: int = 0, limit: int = 10):
     return db.query(models.prestamo.Prestamo).offset(skip).limit(limit).all()
 def create_prestamo(db: Session, prestamo: schemas.prestamo.PrestamoCreate):
     db_prestamo = models.prestamo.Prestamo(
-        idPrestamo = prestamo.idPrestamo,
         idUsuario = prestamo.idUsuario,
         idMaterial = prestamo.idMaterial,
         fechaPrestamo = prestamo.fechaPrestamo,

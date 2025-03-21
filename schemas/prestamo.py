@@ -3,10 +3,8 @@ from pydantic import BaseModel
 from datetime import datetime
 
 class PrestamoBase(BaseModel):
-    idPrestamo: int
     idUsuario: int
     idMaterial: int
-    tipoUsuario: str
     fechaPrestamo: datetime
     fechaDevolucion: datetime
     estatus: bool

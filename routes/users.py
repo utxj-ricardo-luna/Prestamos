@@ -23,7 +23,7 @@ def get_db():
 async def read_users(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     db_users = crud.users.get_users(db = db , skip = skip, limit=limit)
     return db_users
-@user.post("/user/{id}", response_model=schemas.users.User, tags=["Usuarios"])
+@user.post("/user/{id}", response_model=schemas.users.User, tags=["Usuarios"], dependencies=[Depends(Portador())])
 async def read_user(id: int, db: Session = Depends(get_db)):
     db_user= crud.users.get_user(db=db, id=id)
     if db_user is None:
@@ -36,14 +36,14 @@ def create_user(user: schemas.users.UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Usuario existente intenta nuevamente")
     return crud.users.create_user(db=db, user=user)
 
-@user.put("/user/{id}", response_model=schemas.users.User, tags=["Usuarios"])
+@user.put("/user/{id}", response_model=schemas.users.User, tags=["Usuarios"], dependencies=[Depends(Portador())])
 async def update_user(id: int, user: schemas.users.UserUpdate, db: Session = Depends(get_db)):
     db_user = crud.users.update_user(db=db, id=id, user=user)
     if db_user is None:
         raise HTTPException(status_code=404, detail="Usuario no existe, no actualizado")
     return db_user
 
-@user.delete("/user/{id}", response_model=schemas.users.User, tags=["Usuarios"])
+@user.delete("/user/{id}", response_model=schemas.users.User, tags=["Usuarios"], dependencies=[Depends(Portador())])
 async def delete_user(id: int, db: Session = Depends(get_db)):
     db_user = crud.users.delete_user(db=db, id=id)
     if db_user is None:
