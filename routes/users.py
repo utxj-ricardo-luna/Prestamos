@@ -1,5 +1,6 @@
 from fastapi import APIRouter,HTTPException, Depends
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 import crud.users
 import config.db
@@ -8,7 +9,6 @@ from portadortoken import Portador
 import schemas.users
 import models.users
 from typing import List
-from fastapi.middleware.cors import CORSMiddleware
 
 user = APIRouter()
 # Configurar CORS
@@ -19,6 +19,7 @@ user.add_middleware(
     allow_methods=["*"],  # Permitir todos los métodos (GET, POST, PUT, DELETE)
     allow_headers=["*"],  # Permitir todos los encabezados
 )
+
 models.users.Base.metadata.create_all(bind=config.db.engine)
 
 def get_db():
