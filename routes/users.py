@@ -8,6 +8,7 @@ from portadortoken import Portador
 import schemas.users
 import models.users
 from typing import List
+from fastapi.middleware.cors import CORSMiddleware
 
 user = APIRouter()
 # Configurar CORS
