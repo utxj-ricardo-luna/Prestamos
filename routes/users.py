@@ -11,7 +11,7 @@ from typing import List
 
 user = APIRouter()
 # Configurar CORS
-app.add_middleware(
+user.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Permitir solo este dominio (o usa ["*"] para todos)
     allow_credentials=True,
